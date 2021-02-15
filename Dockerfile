@@ -1,3 +1,6 @@
-FROM tiangolo/uwsgi-nginx-flask:python3.6
-RUN pip install redis
-ADD /azure-vote /app
+From tomcat
+Maintainer Tia
+RUN cd /usr/local/tomcat/webapps
+RUN wget https://warfiles-for-docker.s3.amazonaws.com/addressbook.war
+CMD "catalina.sh" "run"
+EXPOSE 8080
