@@ -1,8 +1,5 @@
-WORKDIR /usr/local/apache2/htdocs/
-RUN wget https://linux-devops-course.s3.amazonaws.com/WEB+SIDE+HTML/www.liyeplimal.net.zip \
-    unzip www.liyeplimal.net.zip \
-    rm -rf www.liyeplimal.net.zip \
-    cp -R www.liyeplimal.net/* . \
-    rm -rf www.liyeplimal.net 
-CMD [“/usr/sbin/httpd”,” -D”,” FOREGROUND”]
-EXPOSE 80
+FROM tomcat
+WORKDIR /usr/local/tomcat/webapps
+RUN wget https://warfiles-for-docker.s3.amazonaws.com/addressbook.war
+CMD "catalina.sh" "run"
+EXPOSE 8080
