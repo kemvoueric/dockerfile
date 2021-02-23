@@ -1,5 +1,5 @@
 FROM httpd
-
+RUN yum -y install wget
 WORKDIR /usr/local/apache2/htdocs/
 RUN wget https://linux-devops-course.s3.amazonaws.com/WEB+SIDE+HTML/www.liyeplimal.net.zip \
     unzip www.liyeplimal.net.zip \
