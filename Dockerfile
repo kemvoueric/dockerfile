@@ -1,6 +1,6 @@
 FROM httpd
 
-ARG WEB_DIRECTORY=www.liyeplimal.net.zip
+ARG WEB_DIRECTORY=www.liyeplimal.net
 
 LABEL maintainer="Tia M"
 RUN apt -y update && \
