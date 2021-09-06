@@ -1,13 +1,18 @@
-FROM tomcat:latest
+FROM httpd
 LABEL maintainer="Tia M"
-WORKDIR /opt
-RUN mkdir pebble
-WORKDIR /opt/pebble
-RUN wget http://prdownloads.sourceforge.net/pebble/pebble-2.6.4.zip?download
-RUN unzip -q pebble-2.6.4.zip\?download
-RUN rm -rf /usr/local/tomcat/webapps/*
-RUN cd /opt/pebble/pebble-2.6.4 && cp -r pebble-2.6.4.war /usr/local/tomcat/webapps
-RUN cd /usr/local/tomcat/webapps && mv pebble-2.6.4.war pebble.war
-RUN cd /opt && rm -rf pebble
-EXPOSE 8080
-CMD ["catalina.sh", "run"]
+RUN apt -y update && \
+    apt -y install wget && \
+    apt -y install unzip
+
+WORKDIR /usr/local/apache2/htdocs/
+
+RUN rm -rf * && \
+    wget https://linux-devops-course.s3.amazonaws.com/WEB+SIDE+HTML/covid19.zip && \
+    unzip covid19.zip && \
+    cp -R covid19/* . && \
+    rm -rf covid19.zip && \
+    rm -rf covid19
+
+USER root
+CMD ["httpd-foreground"]
+EXPOSE 80
